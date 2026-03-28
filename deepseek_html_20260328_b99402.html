@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
+  <meta name="description" content="Premium Dental Clinic – Advanced, gentle dental care. Book your appointment today for a perfect smile.">
+  <title>SmileScape | Modern Dental Clinic</title>
+  <!-- Google Fonts + Font Awesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #ffffff;
+      color: #1e2f3e;
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    /* CSS Variables */
+    :root {
+      --white: #ffffff;
+      --light-blue: #eef7ff;
+      --teal: #1f8a8c;
+      --teal-dark: #146c6e;
+      --teal-light: #e0f4f4;
+      --shadow-sm: 0 8px 20px rgba(0, 0, 0, 0.03), 0 2px 6px rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 12px 28px rgba(0, 0, 0, 0.08);
+      --radius-card: 28px;
+    }
+
+    /* MOBILE-FIRST base styles */
+    .container {
+      width: 100%;
+      padding: 0 20px;
+      margin: 0 auto;
+    }
+
+    /* Typography */
+    h1, h2, h3, .logo {
+      font-weight: 700;
+      letter-spacing: -0.3px;
+    }
+    h2 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+    .section {
+      padding: 60px 0;
+    }
+    .section-title {
+      text-align: center;
+      font-size: 1.9rem;
+      margin-bottom: 1rem;
+      color: #0b2f3b;
+    }
+    .section-sub {
+      text-align: center;
+      color: #5a6e7c;
+      margin-bottom: 2rem;
+      font-size: 1rem;
+    }
+
+    /* Sticky Header + Hamburger */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03);
+      padding: 12px 0;
+    }
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      font-size: 1.6rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #1f8a8c, #3ab4b6);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .logo i {
+      color: var(--teal);
+      background: none;
+      -webkit-background-clip: unset;
+      margin-right: 4px;
+    }
+    .nav-links {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 70px;
+      left: 0;
+      width: 100%;
+      background: white;
+      padding: 1.5rem;
+      gap: 1.2rem;
+      box-shadow: var(--shadow-md);
+      border-radius: 0 0 28px 28px;
+      z-index: 999;
+    }
+    .nav-links.active {
+      display: flex;
+    }
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 600;
+      color: #1e2f3e;
+      font-size: 1.1rem;
+      padding: 8px 0;
+    }
+    .hamburger {
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: var(--teal);
+    }
+    .header-cta {
+      background: var(--teal);
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+
+    /* Buttons */
+    .btn-primary {
+      background: linear-gradient(105deg, #1f8a8c, #2aa3a5);
+      border: none;
+      padding: 14px 24px;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 1rem;
+      color: white;
+      width: 100%;
+      cursor: pointer;
+      transition: 0.2s;
+      box-shadow: var(--shadow-sm);
+      min-height: 48px;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      opacity: 0.95;
+    }
+    /* Forms */
+    input, select, textarea {
+      width: 100%;
+      padding: 14px 18px;
+      border-radius: 60px;
+      border: 1px solid #e2e8f0;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1rem;
+      background: #fff;
+      transition: 0.2s;
+    }
+    input:focus, select:focus {
+      border-color: var(--teal);
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(31,138,140,0.2);
+    }
+    .form-group {
+      margin-bottom: 1rem;
+    }
+
+    /* Cards & Grids (mobile first: 1 col) */
+    .services-grid, .why-grid, .pricing-grid, .blog-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    .service-card, .why-card, .pricing-card, .blog-card {
+      background: white;
+      border-radius: var(--radius-card);
+      padding: 1.8rem 1.2rem;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+      transition: 0.25s;
+    }
+    .service-card i, .why-card i {
+      font-size: 2.2rem;
+      color: var(--teal);
+      margin-bottom: 1rem;
+    }
+    .trust-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+    .trust-item {
+      text-align: center;
+      flex: 1;
+      min-width: 100px;
+    }
+
+    /* Gallery slider (mobile touch) */
+    .slider-container {
+      position: relative;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+    }
+    .slider-wrapper {
+      display: flex;
+      transition: transform 0.3s ease;
+    }
+    .slide {
+      min-width: 100%;
+      position: relative;
+    }
+    .slide img {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      display: block;
+    }
+    .slider-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,255,255,0.9);
+      border: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      font-size: 1.2rem;
+      cursor: pointer;
+      z-index: 2;
+    }
+    .prev { left: 12px; }
+    .next { right: 12px; }
+
+    /* Testimonial carousel (touch) */
+    .testimonial-area {
+      background: var(--light-blue);
+      border-radius: 36px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      position: relative;
+    }
+    .testi-slide {
+      display: none;
+      animation: fade 0.4s;
+    }
+    .testi-slide.active {
+      display: block;
+    }
+    .testi-img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 0 auto 1rem;
+    }
+    .testi-nav {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .testi-nav button {
+      background: var(--teal);
+      border: none;
+      padding: 8px 20px;
+      border-radius: 40px;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+
+    /* FAQ */
+    .faq-item {
+      background: white;
+      border-radius: 24px;
+      margin-bottom: 1rem;
+      padding: 1.2rem 1.5rem;
+      box-shadow: var(--shadow-sm);
+      cursor: pointer;
+    }
+    .faq-question {
+      font-weight: 700;
+      display: flex;
+      justify-content: space-between;
+    }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: 0.3s;
+      color: #4b5f6e;
+    }
+    .faq-item.active .faq-answer {
+      max-height: 200px;
+      padding-top: 0.8rem;
+    }
+
+    /* Stats counters - UPDATED: Dark text for better visibility */
+    .stats-section-custom {
+      background: linear-gradient(115deg, #f8fafc, #ffffff);
+      border-top: 1px solid #e2e8f0;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .stats-flex {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 3rem;
+      text-align: center;
+    }
+    .stat-number {
+      font-size: 3rem;
+      font-weight: 800;
+      color: #1e2f3e;
+      background: linear-gradient(135deg, #1f8a8c, #146c6e);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 0.5rem;
+    }
+    .stats-flex p {
+      color: #2d3e50;
+      font-weight: 600;
+      font-size: 1rem;
+      letter-spacing: 0.5px;
+    }
+    .stat-item {
+      padding: 1rem;
+    }
+
+    /* Emergency banner */
+    .emergency-banner {
+      background: linear-gradient(95deg, #ff7a5c, #ee5a3a);
+      border-radius: 30px;
+      padding: 1rem 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      color: white;
+    }
+
+    /* Map */
+    .map iframe {
+      width: 100%;
+      border-radius: 28px;
+      height: 260px;
+      border: 0;
+    }
+
+    footer {
+      background: #0b2b33;
+      color: #cbdbe2;
+      padding: 3rem 0 1.5rem;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    .floating-wa, .floating-call {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #25D366;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 26px;
+      box-shadow: var(--shadow-md);
+      z-index: 99;
+      text-decoration: none;
+      transition: transform 0.2s;
+    }
+    .floating-wa:hover, .floating-call:hover {
+      transform: scale(1.05);
+    }
+    .floating-call {
+      bottom: 90px;
+      background: var(--teal);
+    }
+
+    /* MEDIA QUERIES (Tablet & Desktop) */
+    @media (min-width: 640px) {
+      .container { max-width: 640px; }
+      .services-grid, .why-grid, .pricing-grid, .blog-grid { grid-template-columns: repeat(2, 1fr); gap: 1.8rem; }
+      h2 { font-size: 2rem; }
+    }
+    @media (min-width: 768px) {
+      .container { max-width: 760px; }
+      .nav-links { display: flex; flex-direction: row; position: static; width: auto; background: transparent; padding: 0; gap: 1.8rem; box-shadow: none; }
+      .hamburger { display: none; }
+      .navbar { justify-content: space-between; }
+      .hero-grid { display: flex; gap: 2rem; align-items: center; }
+      .hero-content { flex: 1; }
+      .hero-form-card { flex: 0.8; background: rgba(255,255,255,0.97); border-radius: 0; padding: 2rem; box-shadow: var(--shadow-md); border: 1px solid rgba(0,0,0,0.05); }
+      .services-grid, .why-grid, .pricing-grid, .blog-grid { grid-template-columns: repeat(3, 1fr); }
+      .footer-grid { grid-template-columns: repeat(3, 1fr); }
+      .stats-flex { gap: 4rem; }
+    }
+    @media (min-width: 1024px) {
+      .container { max-width: 1100px; }
+      .section-title { font-size: 2.3rem; }
+    }
+
+    /* utility */
+    .scroll-reveal {
+      opacity: 0;
+      transform: translateY(25px);
+      transition: 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    }
+    .scroll-reveal.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+    .text-center { text-align: center; }
+    .mt-2 { margin-top: 1rem; }
+
+    /* HERO SECTION WITH BACKGROUND IMAGE (IMPROVED) */
+    .hero-section {
+      position: relative;
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=1950&q=80');
+      background-size: cover;
+      background-position: center 30%;
+      background-repeat: no-repeat;
+      padding: 70px 0;
+      color: white;
+    }
+    .hero-section .hero-content h1,
+    .hero-section .hero-content p {
+      color: white;
+      text-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+    .hero-section .hero-content h1 span {
+      color: #f0f9ff;
+      border-bottom: 2px solid var(--teal);
+    }
+
+    /* Redesigned quick appointment box: sharp corners, modern style */
+    .hero-form-card {
+      background: #ffffff;
+      box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.2);
+      border: none;
+      border-radius: 0 !important;
+      transition: transform 0.25s ease;
+    }
+    .hero-form-card:hover {
+      transform: translateY(-4px);
+    }
+    .hero-form-card h3 {
+      color: #0b2f3b;
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 1.2rem;
+      border-left: 5px solid var(--teal);
+      padding-left: 15px;
+    }
+    .hero-form-card .form-group input {
+      border-radius: 0;
+      border: 1px solid #e2e8f0;
+      background: #fefefe;
+      transition: 0.2s;
+    }
+    .hero-form-card .form-group input:focus {
+      border-color: var(--teal);
+      box-shadow: 0 0 0 3px rgba(31,138,140,0.1);
+    }
+    .hero-form-card .btn-primary {
+      border-radius: 0;
+      background: var(--teal);
+      background: linear-gradient(95deg, #1f8a8c, #1a7a7c);
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      margin-top: 0.5rem;
+    }
+    .hero-form-card .btn-primary:hover {
+      background: var(--teal-dark);
+      transform: translateY(-2px);
+    }
+    @media (max-width: 767px) {
+      .hero-section {
+        padding: 50px 0;
+      }
+      .hero-form-card {
+        margin-top: 30px;
+        border-radius: 0;
+        padding: 1.8rem;
+      }
+      .hero-form-card h3 {
+        font-size: 1.4rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Sticky Header -->
+<header>
+  <div class="container navbar">
+    <div class="logo"><i class="fas fa-tooth"></i> SmileScape</div>
+    <div class="hamburger" id="hamburger"><i class="fas fa-bars"></i></div>
+    <div class="nav-links" id="navLinks">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#testimonials">Reviews</a>
+      <a href="#contact">Contact</a>
+      <button class="header-cta" id="headerBookBtn">Book Now</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- Hero Section with Background Image -->
+  <section id="home" class="hero-section">
+    <div class="container hero-grid">
+      <div class="hero-content scroll-reveal">
+        <h1 style="font-size: 2.2rem; line-height: 1.2;">Advanced Dentistry, <span>Gentle Touch</span></h1>
+        <p style="margin: 1rem 0 1.5rem; font-size: 1.1rem;">Same-day emergency, expert implants & cosmetic smile makeovers. Book your visit in seconds.</p>
+        <button class="btn-primary" id="heroBookBtn">Book Free Consultation →</button>
+      </div>
+      <div class="hero-form-card scroll-reveal">
+        <h3><i class="fas fa-calendar-alt" style="margin-right: 10px; color: var(--teal);"></i> Quick Appointment</h3>
+        <form id="heroMiniForm">
+          <div class="form-group"><input type="text" id="miniName" placeholder="Full Name" required></div>
+          <div class="form-group"><input type="tel" id="miniPhone" placeholder="Phone Number" required></div>
+          <button type="submit" class="btn-primary">Request Callback</button>
+          <p style="font-size: 12px; margin-top: 12px; color: #5f7f8c;">✔️ Instant confirmation — we reply within 1 hour</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust Indicators -->
+  <div class="container trust-row scroll-reveal">
+    <div class="trust-item"><i class="fas fa-star" style="color: #f4b836; font-size: 2rem;"></i><p><strong>4.9 ★ (1,280+ reviews)</strong></p></div>
+    <div class="trust-item"><i class="fas fa-certificate" style="color: var(--teal); font-size: 2rem;"></i><p><strong>ADA Certified</strong></p></div>
+    <div class="trust-item"><i class="fas fa-smile" style="color: var(--teal); font-size: 2rem;"></i><p><strong>12k+ Happy Smiles</strong></p></div>
+  </div>
+
+  <!-- About Clinic -->
+  <section id="about" class="section" style="background: var(--light-blue);">
+    <div class="container scroll-reveal">
+      <h2 class="section-title">Our Philosophy</h2>
+      <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+        <div><i class="fas fa-heartbeat" style="color: var(--teal); font-size: 1.8rem;"></i><h3>Mission</h3><p>Empower patients with painless, high-tech dental care focused on long-term wellness.</p></div>
+        <div><i class="fas fa-chalkboard-user"></i><h3>Vision</h3><p>To be the global standard for ethical, comfortable, and transformative dentistry.</p></div>
+        <div><i class="fas fa-hand-holding-heart"></i><h3>Doctor's Philosophy</h3><p>"Every smile tells a story – we treat with empathy, precision, and artistry." – Dr. Elena</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Meet Dentist -->
+  <section class="section">
+    <div class="container scroll-reveal text-center">
+      <h2 class="section-title">Meet The Expert</h2>
+      <div style="max-width: 500px; margin: 0 auto; background: white; border-radius: 36px; padding: 2rem; box-shadow: var(--shadow-md);">
+        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=400&q=80" alt="Dr. Sophia Chen" loading="lazy" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; margin-bottom: 1rem;">
+        <h3>Dr. Sophia Chen, DMD</h3>
+        <p>Harvard-trained prosthodontist, 15+ years of excellence. Fellow of International Congress of Oral Implantologists.</p>
+        <p><i class="fas fa-certificate"></i> Top 1% Invisalign Provider</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" class="section" style="background: #fafcff;">
+    <div class="container scroll-reveal">
+      <h2 class="section-title">Premium Treatments</h2>
+      <div class="services-grid">
+        <div class="service-card"><i class="fas fa-broom"></i><h3>Deep Cleaning</h3><p>Ultrasonic scaling & gum care</p></div>
+        <div class="service-card"><i class="fas fa-smile"></i><h3>Braces/Aligners</h3><p>Clear aligners & metal braces</p></div>
+        <div class="service-card"><i class="fas fa-tooth"></i><h3>Dental Implants</h3><p>Permanent, natural titanium</p></div>
+        <div class="service-card"><i class="fas fa-star-of-life"></i><h3>Root Canal</h3><p>Painless rotary endodontics</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us -->
+  <section class="section">
+    <div class="container scroll-reveal">
+      <h2 class="section-title">Why Choose Us</h2>
+      <div class="why-grid">
+        <div class="why-card"><i class="fas fa-clock"></i><h3>Same-Day Emergency</h3><p>Walk-ins & 24/7 hotline</p></div>
+        <div class="why-card"><i class="fas fa-microscope"></i><h3>Digital 3D Imaging</h3><p>Low radiation, precise planning</p></div>
+        <div class="why-card"><i class="fas fa-smile-beam"></i><h3>Pain-Free Guarantee</h3><p>Laser & sedation options</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Before & After Gallery Slider (touch & button) -->
+  <section class="section" style="background: var(--light-blue);">
+    <div class="container scroll-reveal">
+      <h2 class="section-title">Real Transformations</h2>
+      <div class="slider-container" id="gallerySlider">
+        <div class="slider-wrapper" id="galleryWrapper">
+          <div class="slide"><img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=800&q=80" alt="Before treatment" loading="lazy"><div class="text-center" style="padding: 8px; background: white;">Before: Discoloration</div></div>
+          <div class="slide"><img src="https://images.unsplash.com/photo-1606811971618-4486d14f3f99?auto=format&fit=crop&w=800&q=80" alt="After whitening" loading="lazy"><div class="text-center" style="padding: 8px; background: white;">After: Zoom Whitening</div></div>
+          <div class="slide"><img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=800&q=80" alt="Implant case" loading="lazy"><div class="text-center" style="padding: 8px; background: white;">Full implant restoration</div></div>
+        </div>
+        <button class="slider-btn prev" id="galleryPrev"><i class="fas fa-chevron-left"></i></button>
+        <button class="slider-btn next" id="galleryNext"><i class="fas fa-chevron-right"></i></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Carousel (touch + buttons) -->
+  <section id="testimonials" class="section">
+    <div class="container scroll-reveal">
+      <h2 class="section-title">Patient Stories</h2>
+      <div class="testimonial-area" id="testiArea">
+        <div class="testi-slide active">
+          <img class="testi-img" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80" alt="user" loading="lazy">
+          <p>"Absolutely life-changing! The team was so gentle, and my veneers look perfect."</p>
+          <h4>- Amanda K.</h4>
+        </div>
+        <div class="testi-slide">
+          <img class="testi-img" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80" alt="user" loading="lazy">
+          <p>"Emergency root canal was painless. State-of-the-art clinic and friendly staff."</p>
+          <h4>- Michael R.</h4>
+        </div>
+        <div class="testi-slide">
+          <img class="testi-img" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=150&q=80" alt="user" loading="lazy">
+          <p>"I love my new smile! Thanks to SmileScape for the amazing implants."</p>
+          <h4>- Priya S.</h4>
+        </div>
+        <div class="testi-nav">
+          <button id="prevTestiBtn"><i class="fas fa-arrow-left"></i> Prev</button>
+          <button id="nextTestiBtn">Next <i class="fas fa-arrow-right"></i></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing / Packages -->
+  <section class="section">
+    <div class="container scroll-reveal">
+      <h2 class="section-title">Flexible Plans</h2>
+      <div class="pricing-grid">
+        <div class="pricing-card"><h3>Essential Care</h3><div class="stat-number">$89</div><p>Checkup + Cleaning + X-Ray</p><button class="btn-primary">Book</button></div>
+        <div class="pricing-card"><h3>Pearl Whitening</h3><div class="stat-number">$299</div><p>Laser whitening + take-home kit</p><button class="btn-primary">Book</button></div>
+        <div class="pricing-card"><h3>Smile Makeover</h3><div class="stat-number">$2,199</div><p>Veneers or implant consultation</p><button class="btn-primary">Consult</button></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Accordion -->
+  <section class="section" style="background: var(--light-blue);">
+    <div class="container scroll-reveal">
+      <h2 class="section-title">Common Questions</h2>
+      <div class="faq-item"><div class="faq-question">Do you accept insurance? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Yes, we accept most PPO plans and offer flexible financing options.</div></div>
+      <div class="faq-item"><div class="faq-question">Is teeth whitening safe? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Absolutely. Our dentist-supervised whitening protects enamel and gums.</div></div>
+      <div class="faq-item"><div class="faq-question">What about after-hours emergencies? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">We have a 24/7 emergency line: 7897464377, same-day priority.</div></div>
+    </div>
+  </section>
+
+  <!-- Blog / Tips -->
+  <section class="section">
+    <div class="container scroll-reveal">
+      <h2 class="section-title">Oral Care Tips</h2>
+      <div class="blog-grid">
+        <div class="blog-card"><i class="fas fa-apple-alt"></i><h3>Eat Crunchy Veggies</h3><p>Carrots & celery naturally clean teeth.</p></div>
+        <div class="blog-card"><i class="fas fa-toothbrush"></i><h3>Soft Bristles Rule</h3><p>Replace brush every 3 months.</p></div>
+        <div class="blog-card"><i class="fas fa-calendar-week"></i><h3>6-Month Checkup</h3><p>Prevent issues before they start.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats animated counters -->
+  <section class="section stats-section-custom" id="statsSection">
+    <div class="container stats-flex">
+      <div class="stat-item">
+        <div class="stat-number" id="stat1">0</div>
+        <p>Happy Patients</p>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number" id="stat2">0</div>
+        <p>Years Experience</p>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number" id="stat3">0</div>
+        <p>5-Star Reviews</p>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number" id="stat4">0</div>
+        <p>Smile Makeovers</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Appointment Booking Form -->
+  <section class="section">
+    <div class="container scroll-reveal">
+      <h2 class="section-title">Schedule Your Visit</h2>
+      <form id="appointmentForm" style="max-width: 550px; margin: 0 auto; background: white; border-radius: 36px; padding: 2rem; box-shadow: var(--shadow-md);">
+        <div class="form-group"><input type="text" id="appName" placeholder="Full Name" required></div>
+        <div class="form-group"><input type="tel" id="appPhone" placeholder="Mobile Number" required></div>
+        <div class="form-group"><select id="appService"><option>Cleaning</option><option>Braces</option><option>Implants</option><option>Whitening</option><option>Root Canal</option></select></div>
+        <div class="form-group"><input type="date" id="appDate" required></div>
+        <button type="submit" class="btn-primary">Confirm Appointment</button>
+        <div id="formFeedback" style="margin-top: 12px; text-align: center; font-size: 0.85rem;"></div>
+      </form>
+    </div>
+  </section>
+
+  <!-- Emergency Banner with updated phone number -->
+  <div class="container" style="margin: 10px auto 20px;">
+    <div class="emergency-banner scroll-reveal">
+      <span><i class="fas fa-ambulance"></i> 🦷 Dental Emergency? Same-day care available.</span>
+      <a href="tel:+917897464377" style="color: white; background: rgba(255,255,255,0.2); padding: 8px 18px; border-radius: 40px; text-decoration: none; font-weight: 600;">Call: 7897464377</a>
+    </div>
+  </div>
+
+  <!-- Contact + Map with updated phone number -->
+  <section id="contact" class="section">
+    <div class="container scroll-reveal text-center">
+      <h2 class="section-title">Get In Touch</h2>
+      <p><i class="fas fa-phone-alt"></i> <a href="tel:+917897464377" style="color: var(--teal); text-decoration: none; font-weight: 600;">+91 7897464377</a></p>
+      <p><i class="fas fa-envelope"></i> hello@smilescape.com</p>
+      <p><i class="fas fa-map-marker-alt"></i> 442 Dental Ave, Suite 210, New York, NY</p>
+      <div class="map mt-2"><iframe src="https://maps.google.com/maps?q=Manhattan%20Dental&t=&z=14&output=embed" allowfullscreen loading="lazy"></iframe></div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-grid">
+      <div><h4>SmileScape</h4><p>Modern dentistry with heart.</p></div>
+      <div><h4>Quick Nav</h4><a href="#home" style="color:#cbdbe2;">Home</a><br><a href="#services" style="color:#cbdbe2;">Services</a><br><a href="#contact" style="color:#cbdbe2;">Contact</a></div>
+      <div><h4>Connect</h4><div style="display: flex; gap: 1rem;"><a href="#" style="color:white;"><i class="fab fa-instagram"></i></a><a href="#" style="color:white;"><i class="fab fa-facebook"></i></a><a href="#" style="color:white;"><i class="fab fa-twitter"></i></a></div></div>
+    </div>
+    <div class="container text-center" style="margin-top: 2rem;">© 2025 SmileScape — Excellence in Dental Care | Call us: 7897464377</div>
+  </footer>
+</main>
+
+<!-- Floating Buttons with updated phone number -->
+<a href="https://wa.me/917897464377" class="floating-wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
+<a href="tel:+917897464377" class="floating-call"><i class="fas fa-phone-alt"></i></a>
+
+<script>
+  // Mobile Hamburger
+  const hamburger = document.getElementById('hamburger');
+  const nav = document.getElementById('navLinks');
+  hamburger.addEventListener('click', () => nav.classList.toggle('active'));
+  document.querySelectorAll('#navLinks a, #headerBookBtn, #heroBookBtn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      if(btn.getAttribute('href')?.startsWith('#')) e.preventDefault();
+      if(btn.id === 'headerBookBtn' || btn.id === 'heroBookBtn') document.getElementById('appointmentForm').scrollIntoView({behavior:'smooth'});
+      else if(btn.getAttribute('href')) document.querySelector(btn.getAttribute('href'))?.scrollIntoView({behavior:'smooth'});
+      if(nav.classList.contains('active')) nav.classList.remove('active');
+    });
+  });
+
+  // Hero mini form validation
+  const miniForm = document.getElementById('heroMiniForm');
+  miniForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('miniName').value.trim();
+    const phone = document.getElementById('miniPhone').value.trim();
+    if(!name || !phone) alert("Please fill both fields");
+    else { alert(`Thank you ${name}, we'll call you shortly at ${phone}!`); miniForm.reset(); }
+  });
+
+  // Appointment form validation
+  const appForm = document.getElementById('appointmentForm');
+  const feedback = document.getElementById('formFeedback');
+  appForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('appName').value.trim();
+    const phone = document.getElementById('appPhone').value.trim();
+    const date = document.getElementById('appDate').value;
+    if(!name || !phone || !date) feedback.innerText = "⚠️ All fields required.";
+    else if(phone.length < 10) feedback.innerText = "⚠️ Valid phone number needed.";
+    else { feedback.innerText = "✅ Appointment booked! We'll confirm via SMS on " + phone; appForm.reset(); }
+    setTimeout(() => feedback.innerText = "", 3000);
+  });
+
+  // Gallery Slider (touch + buttons)
+  const galleryWrapper = document.getElementById('galleryWrapper');
+  const slides = document.querySelectorAll('#galleryWrapper .slide');
+  let galleryIndex = 0;
+  const totalSlides = slides.length;
+  function updateGallery() { galleryWrapper.style.transform = `translateX(-${galleryIndex * 100}%)`; }
+  document.getElementById('galleryNext').addEventListener('click', () => { galleryIndex = (galleryIndex+1) % totalSlides; updateGallery(); });
+  document.getElementById('galleryPrev').addEventListener('click', () => { galleryIndex = (galleryIndex-1+totalSlides)%totalSlides; updateGallery(); });
+  // touch for gallery
+  let startX = 0, endX = 0;
+  galleryWrapper.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; });
+  galleryWrapper.addEventListener('touchend', (e) => {
+    endX = e.changedTouches[0].clientX;
+    if(startX - endX > 50) { galleryIndex = (galleryIndex+1)%totalSlides; updateGallery(); }
+    else if(endX - startX > 50) { galleryIndex = (galleryIndex-1+totalSlides)%totalSlides; updateGallery(); }
+  });
+
+  // Testimonial carousel with touch & buttons
+  const testiSlides = document.querySelectorAll('.testi-slide');
+  let testiActive = 0;
+  function showTesti(index) { testiSlides.forEach((s,i)=> s.classList.toggle('active', i===index)); }
+  document.getElementById('nextTestiBtn').addEventListener('click', ()=>{ testiActive = (testiActive+1)%testiSlides.length; showTesti(testiActive); });
+  document.getElementById('prevTestiBtn').addEventListener('click', ()=>{ testiActive = (testiActive-1+testiSlides.length)%testiSlides.length; showTesti(testiActive); });
+  const testiContainer = document.querySelector('.testimonial-area');
+  testiContainer.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; });
+  testiContainer.addEventListener('touchend', (e) => {
+    endX = e.changedTouches[0].clientX;
+    if(startX - endX > 40) { testiActive = (testiActive+1)%testiSlides.length; showTesti(testiActive); }
+    else if(endX - startX > 40) { testiActive = (testiActive-1+testiSlides.length)%testiSlides.length; showTesti(testiActive); }
+  });
+
+  // FAQ Accordion
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.addEventListener('click', () => item.classList.toggle('active'));
+  });
+
+  // Animated counters with updated realistic numbers
+  const counters = [
+    { element: document.getElementById('stat1'), target: 12580 },
+    { element: document.getElementById('stat2'), target: 18 },
+    { element: document.getElementById('stat3'), target: 2450 },
+    { element: document.getElementById('stat4'), target: 5890 }
+  ];
+  let counted = false;
+  const statsObserver = new IntersectionObserver((entries) => {
+    if(entries[0].isIntersecting && !counted) {
+      counted = true;
+      counters.forEach(c => {
+        let current = 0;
+        const step = Math.ceil(c.target / 60);
+        const interval = setInterval(() => {
+          current += step;
+          if(current >= c.target) { 
+            c.element.innerText = c.target.toLocaleString(); 
+            clearInterval(interval); 
+          }
+          else c.element.innerText = current.toLocaleString();
+        }, 25);
+      });
+    }
+  }, { threshold: 0.3 });
+  const statsSectionElem = document.getElementById('statsSection');
+  if(statsSectionElem) statsObserver.observe(statsSectionElem);
+
+  // Scroll reveal observer
+  const reveals = document.querySelectorAll('.scroll-reveal');
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('revealed'); });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => revealObserver.observe(el));
+</script>
+</body>
+</html>
